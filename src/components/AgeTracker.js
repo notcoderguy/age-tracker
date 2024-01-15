@@ -42,7 +42,7 @@ const AgeTracker = () => {
     calculateAgeAndPercentage();
 
     // Set up a timer to update age and percentage every second
-    const intervalId = setInterval(calculateAgeAndPercentage, 1000);
+    const intervalId = setInterval(calculateAgeAndPercentage, 50);
 
     // Cleanup by clearing the interval when the component unmounts
     return () => clearInterval(intervalId);
