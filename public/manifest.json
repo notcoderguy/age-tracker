@@ -1,5 +1,27 @@
 {
- "name": "App",
+ "name": "Live Age Tracker",
+ "short_name": "Live Age Tracker",
+ "start_url": "index.html",
+ "display": "standalone",
+ "theme_color": "#000",
+ "background_color": "#000",
+ "description": "🚀Live Age Tracker - Track your age in realtime! 🕒✨ Switch between light 🌞 and dark 🌚 modes. Simple & fun!",
+ "screenshots": [
+    {
+        "src": "\/banner.jpeg",
+        "sizes": "1693x848",
+        "type": "image\/jpeg",
+        "form_factor": "wide",
+        "label": "Banner"
+    },
+    {
+        "src": "\/screenshot.jpeg",
+        "sizes": "500x812",
+        "type": "image\/jpeg",
+        "form_factor": "narrow",
+        "label": "Banner"
+    }
+ ],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

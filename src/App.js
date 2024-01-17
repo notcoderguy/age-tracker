@@ -66,16 +66,17 @@ function App() {
         overlayClassName="modal-overlay"
       >
         {/* Text within the modal */}
-        <p className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-black' : 'text-black'}`}>Select your DOB</p>
+        <p className={`text-2xl font-semibold mb-4 text-black`}>Select your DOB</p>
 
         {/* Date picker with improved styles */}
         <DatePicker
           value={selectedDate}
           onChange={handleDateChange}
           className={`bg-gray-200 text-black`}
-          dayPlaceholder='08'
-          monthPlaceholder='08'
-          yearPlaceholder='2001'
+          dayPlaceholder='dd'
+          monthPlaceholder='mm'
+          yearPlaceholder='yyyy'
+          format='dd/MM/yyyy'
         />
       </Modal>
 

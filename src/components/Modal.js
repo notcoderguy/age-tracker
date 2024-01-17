@@ -19,7 +19,7 @@ const Modal = ({ isOpen, onRequestClose, children }) => {
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black
+    background: 'rgba(0, 0, 0, 0.1)', // Semi-transparent black
     backdropFilter: 'blur(8px)', // Apply blur to the background
     zIndex: 999, // Ensure backdrop is below modal
   };

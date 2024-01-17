@@ -28,7 +28,7 @@ const ThemeToggle = ({ isDarkMode, toggleTheme }) => {
   );
 
   return (
-    <button onClick={toggleTheme} className={`text-${isDarkMode ? 'white' : 'gray-600'} hover:text-${isDarkMode ? 'gray-300' : 'gray-800'} focus:outline-none`}>
+    <button onClick={toggleTheme} className={`text-${isDarkMode ? 'white' : 'gray-600'} hover:text-${isDarkMode ? 'gray-300' : 'gray-800'} focus:outline-none`} aria-label='theme-toggle'>
       {isDarkMode ? darkThemeIcon : lightThemeIcon}
     </button>
   );
