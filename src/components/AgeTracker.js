@@ -5,8 +5,8 @@ const AgeTracker = () => {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
-    
-    
+
+
     const calculateAgeAndPercentage = () => {
       // Read DOB from localStorage or set it to August 8, 2001, if not present
       let dob = localStorage.getItem('dob');
@@ -18,10 +18,14 @@ const AgeTracker = () => {
       const now = new Date();
 
       // Calculate age in years
-      const ageInMilliseconds = now - dobDate;
-      const ageInSeconds = ageInMilliseconds / 1000;
-      const ageInYears = ageInSeconds / 31536000; // 31536000 seconds in a year
-      
+      let ageInYears = now.getFullYear() - dobDate.getFullYear();
+
+      // Adjust age if the current date is before the birthday in the current year
+      const currentYearBirthday = new Date(now.getFullYear(), dobDate.getMonth(), dobDate.getDate());
+      if (now < currentYearBirthday) {
+        ageInYears--;
+      }
+
       setAge(ageInYears.toFixed(0));
 
       // Calculate the percentage based on the elapsed time since the last birthday
