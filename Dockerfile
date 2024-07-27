@@ -8,8 +8,12 @@ WORKDIR /usr/src/app
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 
+# Install pnpm
+RUN npm install -g pnpm
+
 # Install the app's dependencies
 RUN pnpm install
+
 
 # Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .
@@ -18,7 +22,7 @@ COPY . .
 RUN pnpm run build
 
 # Install serve to run the application.
-RUN pnpm install -g serve
+RUN npm install -g serve
 
 # The port that your application listens to in the container
 EXPOSE 80
