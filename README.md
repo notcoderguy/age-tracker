@@ -1,6 +1,11 @@
 # Age Tracker App 🕒🎉
 
+<p align="center">
+ <img src="./public/favicon-96x96.png" alt="Age Tracker App">
+</p>
+
 Track your age in seconds and customize the app with light and dark modes!
+
 
 ## Overview 📝
 
@@ -17,7 +22,7 @@ The Age Tracker App is a simple React application that calculates and displays y
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/age-tracker.git
+   git clone https://github.com/notcoderguy/age-tracker.git
    ```
 
 2. Navigate to the project directory:
@@ -29,13 +34,13 @@ The Age Tracker App is a simple React application that calculates and displays y
 3. Install dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 4. Start the development server:
 
    ```bash
-   npm start
+   pnpm start
    ```
 
 5. Open your web browser and go to `http://localhost:3000` to use the app.
