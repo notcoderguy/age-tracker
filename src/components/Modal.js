@@ -7,7 +7,7 @@ const Modal = ({ isOpen, onRequestClose, children }) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     background: 'black',
-    border: '1px solid #ccc',
+    border: '2px solid #ccc',
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.2)',

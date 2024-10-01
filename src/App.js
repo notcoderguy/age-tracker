@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'react-date-picker/dist/DatePicker.css';
+import './DatePicker.css';
 import './components/Calendar.css';
 import DatePicker from 'react-date-picker';
 
@@ -71,14 +71,14 @@ function App() {
         className={`modal ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
         overlayClassName="modal-overlay"
       >
-        {/* Text within the modal */}
+
         <p className={`text-2xl font-semibold mb-4 text-white`}>Select your DOB</p>
 
         {/* Date picker with improved styles */}
         <DatePicker
           value={selectedDate}
           onChange={handleDateChange}
-          className={`bg-gray-200 text-black border rounded-lg w-full`}
+          className={`bg-black text-white border rounded w-full`}
           dayPlaceholder='dd'
           monthPlaceholder='mm'
           yearPlaceholder='yyyy'
