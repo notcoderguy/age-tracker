@@ -9,6 +9,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
 
+  if (theme === "system") {
+    console.log("System theme")
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
