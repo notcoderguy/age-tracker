@@ -27,23 +27,17 @@ import { CalendarIcon } from "lucide-react";
 interface SettingsDialogProps {
   selectedDate: Date | null;
   onDateChange: (date: Date | null) => void;
-  userName: string;
-  onUserNameChange: (userName: string) => void;
 }
 
 export function SettingsDialog({
   selectedDate,
   onDateChange,
-  userName,
-  onUserNameChange,
 }: SettingsDialogProps) {
   const [open, setOpen] = useState(false);
-  const [tempUserName, setTempUserName] = useState(userName);
   const [tempDate, setTempDate] = useState<Date | null>(selectedDate);
 
   const handleSave = () => {
     onDateChange(tempDate);
-    onUserNameChange(tempUserName);
     setOpen(false);
   };
 
@@ -64,24 +58,12 @@ export function SettingsDialog({
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="username"
-              value={tempUserName}
-              onChange={(e) => setTempUserName(e.target.value)}
-              className="col-span-3"
-              placeholder={userName}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="dob" className="text-right">
+            <Label htmlFor="dob">
               Date of Birth
             </Label>
             <div className="col-span-3">
-              <Popover>
-                <PopoverTrigger asChild>
+              <Dialog>
+                <DialogTrigger asChild>
                   <Button
                     id="dob"
                     variant={"outline"}
@@ -97,8 +79,11 @@ export function SettingsDialog({
                       <span>Pick a date</span>
                     )}
                   </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] flex flex-col items-center justify-center my-8">
+                  <DialogHeader>
+                    <DialogTitle className="sr-only">Select Date</DialogTitle>
+                  </DialogHeader>
                   <Calendar
                     mode="single"
                     selected={tempDate || undefined}
@@ -108,8 +93,8 @@ export function SettingsDialog({
                     fromYear={1900}
                     toYear={new Date().getFullYear()}
                   />
-                </PopoverContent>
-              </Popover>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

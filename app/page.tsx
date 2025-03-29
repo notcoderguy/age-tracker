@@ -11,18 +11,12 @@ import { AgeTracker } from "@/components/age-tracker"
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [userName, setUserName] = useState<string>("")
 
   // Load saved data on component mount
   useEffect(() => {
     const savedDate = localStorage.getItem("dob")
     if (savedDate) {
       setSelectedDate(new Date(savedDate))
-    }
-
-    const savedUserName = localStorage.getItem("userName")
-    if (savedUserName) {
-      setUserName(savedUserName)
     }
   }, [])
 
@@ -33,25 +27,14 @@ export default function Home() {
     }
   }
 
-  const handleUserNameChange = (name: string) => {
-    setUserName(name)
-    localStorage.setItem("userName", name)
-  }
-
   return (
     <main className="min-h-screen flex flex-col items-center justify-center overflow-hidden relative">
-      {/* Text in the top-left corner */}
-      <div className="absolute top-4 left-4">
-        {userName && <span className="text-sm font-medium mr-2">Hello, {userName}!</span>}
-      </div>
       {/* Icons in the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center space-x-4">
         <ThemeToggle />
         <SettingsDialog
           selectedDate={selectedDate}
           onDateChange={handleDateChange}
-          userName={userName}
-          onUserNameChange={handleUserNameChange}
         />
         <Link
           href="https://github.com/notcoderguy/age-tracker"
