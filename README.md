@@ -40,7 +40,7 @@ The Age Tracker App is a simple React application that calculates and displays y
 4. Start the development server:
 
    ```bash
-   pnpm start
+   pnpm dev
    ```
 
 5. Open your web browser and go to `http://localhost:3000` to use the app.
