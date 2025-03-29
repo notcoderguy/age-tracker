@@ -143,6 +143,23 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/custom-sw.js')
+                    .then(registration => {
+                      console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                      console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );
