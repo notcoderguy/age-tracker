@@ -12,6 +12,15 @@ import { AgeTracker } from "@/components/age-tracker"
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((reg) => console.log('Service Worker registered', reg))
+        .catch((err) => console.error('Service Worker registration failed', err));
+    }
+  }, []);
+
   // Load saved data on component mount
   useEffect(() => {
     const savedDate = localStorage.getItem("dob")

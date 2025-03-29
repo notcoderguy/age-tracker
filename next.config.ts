@@ -6,7 +6,7 @@ const nextConfig: NextConfig = withPWA({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
-  sw: 'custom-sw.js',
+  sw: 'sw.js',
   runtimeCaching: [
     {
       urlPattern: /^https?.*/,
