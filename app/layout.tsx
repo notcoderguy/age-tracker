@@ -146,9 +146,9 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+              if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/custom-sw.js')
+                  navigator.serviceWorker.register('/sw.js')
                     .then(registration => {
                       console.log('ServiceWorker registration successful');
                     })

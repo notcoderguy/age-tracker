@@ -30,6 +30,22 @@ const nextConfig: NextConfig = withPWA({
       }
     },
     {
+      urlPattern: /\/_next\/app-build-manifest\.json$/,
+      handler: 'NetworkOnly'
+    },
+    {
+      urlPattern: /\/_next\/static\/chunks\/webpack\.js$/,
+      handler: 'NetworkOnly'
+    },
+    {
+      urlPattern: /\/_next\/static\/development\/_buildManifest\.js$/,
+      handler: 'NetworkOnly'
+    },
+    {
+      urlPattern: /\/_next\/static\/development\/_ssgManifest\.js$/,
+      handler: 'NetworkOnly'
+    },
+    {
       urlPattern: /\/.*/,
       handler: 'StaleWhileRevalidate',
       options: {

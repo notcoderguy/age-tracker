@@ -28,6 +28,7 @@ export function SettingsDialog({
   onDateChange,
 }: SettingsDialogProps) {
   const [open, setOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const [tempDate, setTempDate] = useState<Date | null>(selectedDate);
 
   const handleSave = () => {
@@ -56,39 +57,41 @@ export function SettingsDialog({
               Date of Birth
             </Label>
             <div className="col-span-3">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    id="dob"
-                    variant={"outline"}
-                    className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !selectedDate && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {selectedDate ? (
-                      format(selectedDate, "PPP")
-                    ) : (
-                      <span>Pick a date</span>
-                    )}
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] flex flex-col items-center justify-center my-8">
-                  <DialogHeader>
-                    <DialogTitle className="sr-only">Select Date</DialogTitle>
-                  </DialogHeader>
+              <Button
+                id="dob"
+                variant={"outline"}
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !selectedDate && "text-muted-foreground"
+                )}
+                onClick={() => setCalendarOpen(!calendarOpen)}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {selectedDate ? (
+                  format(selectedDate, "PPP")
+                ) : (
+                  <span>Pick a date</span>
+                )}
+              </Button>
+              {calendarOpen && (
+                <div className="absolute z-50 mt-2 bg-background p-4 rounded-lg border shadow-lg">
                   <Calendar
                     mode="single"
                     selected={tempDate || undefined}
-                    onSelect={(day) => setTempDate(day || null)}
+                    onSelect={(day) => {
+                      setTempDate(day || null);
+                      setCalendarOpen(false);
+                      if (day) {
+                        onDateChange(day);
+                      }
+                    }}
                     initialFocus
                     captionLayout="dropdown-buttons"
                     fromYear={1900}
                     toYear={new Date().getFullYear()}
                   />
-                </DialogContent>
-              </Dialog>
+                </div>
+              )}
             </div>
           </div>
         </div>
