@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Settings } from "lucide-react";
+import { Settings, ChevronDownIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,11 +12,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
 
 interface SettingsDialogProps {
   selectedDate: Date | null;
@@ -57,41 +61,32 @@ export function SettingsDialog({
               Date of Birth
             </Label>
             <div className="col-span-3">
-              <Button
-                id="dob"
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !selectedDate && "text-muted-foreground"
-                )}
-                onClick={() => setCalendarOpen(!calendarOpen)}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedDate ? (
-                  format(selectedDate, "PPP")
-                ) : (
-                  <span>Pick a date</span>
-                )}
-              </Button>
-              {calendarOpen && (
-                <div className="absolute z-50 mt-2 bg-background p-4 rounded-lg border shadow-lg">
+              <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    id="dob"
+                    className={cn(
+                      "w-full justify-between font-normal",
+                      !tempDate && "text-muted-foreground"
+                    )}
+                  >
+                    {tempDate ? format(tempDate, "PPP") : "Pick a date"}
+                    <ChevronDownIcon />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto overflow-hidden p-0" align="start">
                   <Calendar
                     mode="single"
                     selected={tempDate || undefined}
-                    onSelect={(day) => {
-                      setTempDate(day || null);
+                    captionLayout="dropdown"
+                    onSelect={(date) => {
+                      setTempDate(date || null);
                       setCalendarOpen(false);
-                      if (day) {
-                        onDateChange(day);
-                      }
                     }}
-                    initialFocus
-                    captionLayout="dropdown-buttons"
-                    fromYear={1900}
-                    toYear={new Date().getFullYear()}
                   />
-                </div>
-              )}
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
         </div>
